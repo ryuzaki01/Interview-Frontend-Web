@@ -4,10 +4,10 @@ import { oneOfType, node, string, element, bool } from 'prop-types';
 import "./style.scss";
 
 const Card = function Card(props) {
-  const { children, className } = props || {};
+  const { children, className, ...restProps } = props || {};
 
   return (
-    <div className={`card ${className ? className : ''}`}>
+    <div className={`card ${className ? className : ''}`} {...restProps}>
       {children}
     </div>
   );

@@ -1,0 +1,17 @@
+query productListQuery($page:Int, $size: Int) {
+    productList(page:$page, size:$size) {
+        status
+        message
+        data {
+            items {
+                id
+                title
+                category
+                tags
+                description
+                createdAt
+            }
+            total
+        }
+    }
+}

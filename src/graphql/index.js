@@ -15,12 +15,8 @@ export const schema = new GraphQLSchema({
 });
 
 export default graphqlExpress((req, res, next) => {
-  const { lang, userAgent, channelId, userId } = res.locals.data.app.context;
+  const { lang, userAgent, channelId, userId } = res.locals.data.app;
   const __PROD__ = process.env.NODE_ENV === 'production';
-
-  if (!req.session) {
-    return next(new Error('Session not started'));
-  }
 
   const client = fetch({
     lang,

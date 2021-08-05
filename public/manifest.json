@@ -1,0 +1,10 @@
+{
+  "name": "www.moduit.com",
+  "short_name": "www.moduit.com",
+  "lang": "en-ID",
+  "start_url": "/?utm_source=a2hs",
+  "display": "standalone",
+  "theme_color": "#005ACC",
+  "background_color": "#FFFFFF",
+  "orientation": "portrait"
+}

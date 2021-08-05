@@ -5,6 +5,7 @@
   will-change: auto;
   transition: padding .15s;
   padding-left: 16rem;
+  background-color: #F5F8FB;
 }
 
 .content {
@@ -16,8 +17,10 @@
 .footer {
   font-size: 12px;
   text-align: center;
+  color: #888888;
 
   i {
     color: #4F8AF2;
+    font-style: normal;
   }
 }

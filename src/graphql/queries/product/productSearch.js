@@ -1,31 +1,14 @@
 import {
   GraphQLString,
-  GraphQLInt,
-  GraphQLList
+  GraphQLInt
 } from 'graphql';
 
 import { getProductSearch } from '../../../models';
-import { ProductType } from '../../types';
-
-const filterSearch = (products, search) => {
-  return (products || []).filter(product => {
-    if (!search) {
-      return true;
-    }
-
-    const { title } = product || {};
-    const searchRegX = new RegExp(`^${search}`);
-
-    return searchRegX.test(title);
-  })
-};
-
-const paginate = (items, page, size) => {
-  return (items || []).slice((page - 1) * size, page * size);
-};
+import { ProductListType } from '../../types';
+import { filterSearch, paginate } from '../../../core/utils';
 
 const productSearch = {
-  type: new GraphQLList(ProductType),
+  type: ProductListType,
   args: {
     search: { type: GraphQLString },
     page: { type: GraphQLInt },
@@ -34,10 +17,32 @@ const productSearch = {
   resolve: (root, args) => {
     const { page, size, search } = args || {};
     const { client } = root || {};
+    let total = 0;
 
     return getProductSearch(client)()
       .then(products => filterSearch(products, search))
-      .then(products => paginate(products, page, size));
+      .then(results => {
+        total = (results || []).length;
+
+        return results;
+      })
+      .then(products => paginate(products, page, size))
+      .then(results => ({
+        status: 200,
+        message: 'success',
+        data: {
+          items: results,
+          total
+        }
+      }))
+      .catch(e => ({
+        status: e.statusCode,
+        message: e.message,
+        data: {
+          items: null,
+          total
+        }
+      }));
   }
 };
 

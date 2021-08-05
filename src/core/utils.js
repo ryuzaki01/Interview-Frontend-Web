@@ -180,24 +180,19 @@ export const base36Encode = (integer) => {
   return s.join("");
 };
 
-export const base36Decode = (chars) =>
-  chars
-    .split("")
-    .reverse()
-    .reduce((prev, curr, i) => prev + base36Charset.indexOf(curr) * 36 ** i, 0);
+export const filterSearch = (products, search) => {
+  return (products || []).filter(product => {
+    if (!search || search === '') {
+      return true;
+    }
 
-export const isEmail = (email) => {
-  const regexEmail = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+    const { title } = product || {};
+    const searchRegX = new RegExp(`${search}`, 'ig');
 
-  return regexEmail.test(email);
+    return searchRegX.test(title);
+  })
 };
 
-export const isPhone = (phone) => {
-  const regexPhone = /^\+?[0-9]+$/;
-
-  return regexPhone.test(phone);
+export const paginate = (items, page = 1, size = 5) => {
+  return (items || []).slice((page - 1) * size, page * size);
 };
-
-export const getErrorGraphql = (error) => {
-  return error?.graphQLErrors[0]?.message || ""
-}

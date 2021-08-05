@@ -96,14 +96,15 @@ export default (req, res) => {
 
       winston.error('MOUNT ERROR', mountError, {
         url: req.originalUrl,
-        ...( hasErrorMessage ? { errorMessage: message } : {}),
+        ...( hasErrorMessage ? { errorMessage : message } : { }),
         ...( hasNetworkError ? {
           requestURL: networkError.response.url,
           status: networkError.response.statusText,
           code: networkError.statusCode,
         } : {}),
-        ...(hasGraphQLErrors ? { errors: graphQLErrors } : {}),
-        ...(!hasNetworkError && !hasGraphQLErrors && !hasErrorMessage ? { errorMessage: mountError } : {})
+        ...(hasGraphQLErrors ? { errors : graphQLErrors } : {}),
+        ...(!hasNetworkError && !hasGraphQLErrors && !hasErrorMessage ?
+          { errorMessage: mountError } : {})
       });
 
       hydrateOnClient();

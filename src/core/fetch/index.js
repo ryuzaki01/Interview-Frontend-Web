@@ -33,10 +33,12 @@ const request = (context) => (url, options) => {
 
   const URI = normalizeUrl(url);
   const isGetMethod = options.method === 'GET';
-  const isDeleteMethod = options.method === 'DELETE';
+  const isHeadMethod = options.method === 'HEAD';
+
+  const body = (isGetMethod || isHeadMethod) ? null : qs.stringify(options.data);
 
   const finalURL =
-    isGetMethod || isDeleteMethod || options.queryURL ?
+    isGetMethod || isHeadMethod || options.queryURL ?
       formatGetURL(URI, (options.queryURL || options.data)) : URI;
 
   const requestId = uid(32);

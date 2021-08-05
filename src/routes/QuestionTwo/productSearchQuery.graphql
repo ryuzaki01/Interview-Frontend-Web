@@ -1,0 +1,17 @@
+query productSearchQuery($page:Int, $size: Int, $search: String) {
+    productSearch(page:$page, size:$size, search: $search) {
+        status
+        message
+        data {
+            items {
+                id
+                title
+                category
+                tags
+                description
+                createdAt
+            }
+            total
+        }
+    }
+}

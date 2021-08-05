@@ -61,6 +61,7 @@ if (__PROD__) {
 server.use(cookieParser(config.secret, config.cookie));
 server.use(express.urlencoded({ extended: true }));
 server.use(userAgent.express());
+server.use(initMiddleware);
 
 server.use('/health', (req, res) => {
   return res.send('OK');
@@ -71,10 +72,13 @@ server.use('/graphql',
   graphql
 );
 
-server.use(
-  initMiddleware,
-  AppServer
-);
+if (!__PROD__) {
+  const { graphiqlExpress } = require('apollo-server-express');
+
+  server.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
+}
+
+server.use(AppServer);
 
 server.use((_, res) => res.status(404).send('Not Found'));
 
