@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
+import { useHistory } from 'react-router-dom';
 
 import Card from '../../components/Card';
 import Product from '../../components/Product';
+import SearchInput from '../../components/SearchInput';
 import Pagination from '../../components/Pagination';
+import SizeDropdown from '../../components/SizeDropdown';
 import useData from '../../hooks/useData';
+
+import { stringifyQuery } from '../../core/utils';
 
 import productSearchQuery from './productSearchQuery.graphql';
 
 const QuestionTwo = () => {
-  const [ search, setSearch ] = useState('');
   const [{ app }] = useData();
-  const { query } = app || {};
-  const { p: page = 1, s: size = 5 } = query || {};
+  const history = useHistory();
+  const { query, pathname } = app || {};
+  const { p: page = 1, s: size = 5, search: searchParam } = query || {};
+  const [ search, setSearch ] = useState(searchParam || '');
   const { data, loading } = useQuery(productSearchQuery, {
     ssr: true,
     variables: {
@@ -22,15 +28,34 @@ const QuestionTwo = () => {
     },
   });
 
-  const { productList: productListResult } = data || {};
-  const { data: productListData } = productListResult || {};
-  const { items, total } = productListData || {};
+  const { productSearch: productSearchResult } = data || {};
+  const { data: productSearchData } = productSearchResult || {};
+  const { items, total } = productSearchData || {};
+
+  useEffect(() => {
+    setSearch(searchParam);
+  }, [searchParam]);
 
   return (
     <div className="content">
       <div className="heading">
         <h1>Question 2</h1>
-        <input />
+        <SearchInput value={search} placeholder="Search by product name" onChange={(val) => {
+          setSearch(val);
+          const newQuery = {
+            ...query,
+            search: val
+          };
+
+          if (val === '') {
+            delete newQuery.search;
+          }
+
+          history.push({
+            pathname: pathname,
+            search: `?${stringifyQuery(newQuery)}`
+          });
+        }}/>
       </div>
       <Card style={{ marginTop: 30 }}>
         <table className="table" style={{ marginBottom: 30 }}>
@@ -51,7 +76,10 @@ const QuestionTwo = () => {
             ) : (items || []).map((item, i) => <Product key={`product-${item.id}`} data={item} />)}
           </tbody>
         </table>
-        <Pagination lastPage={Math.floor(total / size)} onSet={console.log}/>
+        <div className="bottom-control">
+          <Pagination lastPage={Math.floor(total / size)}/>
+          <SizeDropdown/>
+        </div>
       </Card>
     </div>
   );

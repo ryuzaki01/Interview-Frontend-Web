@@ -1,0 +1,15 @@
+.size-dropdown {
+  display: inline-block;
+
+  span {
+    font-size: 14px;
+    color: #2383DC;
+    margin-right: 10px;
+  }
+
+  select {
+    border: 1px solid #DDD;
+    border-radius: 30px;
+    padding: 5px;
+  }
+}

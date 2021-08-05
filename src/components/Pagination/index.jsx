@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from '@tiket-com/react-ui';
+import { useHistory } from 'react-router-dom';
 import { string, number, object, func, bool } from 'prop-types';
 
 import useData from '../../hooks/useData';
@@ -9,10 +10,11 @@ import { stringifyQuery, range } from '../../core/utils';
 import './style.scss';
 
 const Pagination = (props) => {
-  const { lastPage, onSet } = props;
+  const { lastPage, onSet = () => {} } = props;
   const [{ app }] = useData();
   const { query, pathname } = app || {};
   const { p: currentPage = 1 } = query || {};
+  const history = useHistory();
 
   const paginate = (curPage, pageCount) => {
     const adjacents = 3;
@@ -44,6 +46,14 @@ const Pagination = (props) => {
   };
 
   const handlePagination = (page) =>{
+    history.push({
+      pathname: pathname,
+      search: `?${stringifyQuery({
+        ...query,
+        p: page
+      })}`
+    });
+
     onSet({
       query: {
         page
@@ -55,7 +65,9 @@ const Pagination = (props) => {
 
   /*istanbul ignore next*/
   if (paginated.length <= 1) {
-    return null;
+    return (
+      <div className="pagination" />
+    );
   }
 
   /*istanbul ignore next*/

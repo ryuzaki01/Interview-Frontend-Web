@@ -1,14 +1,18 @@
 import React from 'react';
 
+import './style.scss';
+
 const Product = ({ data }) => {
   const { id, title, category, description, tags } = data || {};
   const initial = (title || '').split(' ').map(t => t[0].toUpperCase()).join('').slice(0, 2);
 
   return (
-    <tr>
+    <tr className="product">
       <td className="text-left">
-        <i className="initial">{initial}</i>
-        <span>{title}</span>
+        <div className="title">
+          <i className="initial">{initial}</i>
+          <span>{title}</span>
+        </div>
       </td>
       <td className="text-center">
         {id}

@@ -1,0 +1,26 @@
+.search-input {
+  display: flex;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  padding: 5px 10px;
+  background: #FFF;
+  height: 30px;
+  width: 350px;
+
+  input {
+    flex: 1;
+    border: none;
+    height: 20px;
+    outline: 0;
+
+    &::placeholder {
+      color: #d4d4d4;
+    }
+  }
+
+  img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+  }
+}

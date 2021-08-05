@@ -4,6 +4,7 @@ import { useQuery } from '@apollo/react-hooks';
 import Card from '../../components/Card';
 import Product from '../../components/Product';
 import Pagination from '../../components/Pagination';
+import SizeDropdown from '../../components/SizeDropdown';
 import useData from '../../hooks/useData';
 
 import productListQuery from './productListQuery.graphql';
@@ -48,7 +49,10 @@ const QuestionOne = () => {
             ) : (items || []).map((item, i) => <Product key={`product-${item.id}`} data={item} />)}
           </tbody>
         </table>
-        <Pagination lastPage={Math.floor(total / size)} onSet={console.log}/>
+        <div className="bottom-control">
+          <Pagination lastPage={Math.floor(total / size)}/>
+          <SizeDropdown/>
+        </div>
       </Card>
     </div>
   );
