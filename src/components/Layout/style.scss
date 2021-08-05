@@ -1,0 +1,23 @@
+@import "../../styles/index.scss";
+
+.wrapper {
+  width: 100%;
+  will-change: auto;
+  transition: padding .15s;
+  padding-left: 16rem;
+}
+
+.content {
+  padding-right: 1rem;
+  padding-left: 1rem;
+  flex-grow: 1;
+}
+
+.footer {
+  font-size: 12px;
+  text-align: center;
+
+  i {
+    color: #4F8AF2;
+  }
+}

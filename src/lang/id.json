@@ -1,0 +1,9 @@
+{
+  "test": {
+    "withParams": "test {0}",
+    "default": "test"
+  },
+  "yes": "Ya",
+  "no": "Tidak",
+  "cancel": "Batal"
+}
