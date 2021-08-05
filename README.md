@@ -1,7 +1,5 @@
 # interview-frontend-web (React SSR + GraphQL)
 
-Tiket.com GraphQL Payment Gateway project
-
 ## Table of Contents
 1. [Requirements](#requirements)
 2. [Getting Started](#getting-started)
@@ -53,7 +51,7 @@ There are two method on how to set the environment configuration :
     # NewRelic Configuration
     NEW_RELIC_ENABLED=false
     NEW_RELIC_NO_CONFIG_FILE=true
-    NEW_RELIC_APP_NAME=payment-desktop-dev
+    NEW_RELIC_APP_NAME=interview-frontend-web
     NEW_RELIC_LICENSE_KEY=
     NEW_RELIC_LOG_LEVEL=info
     
