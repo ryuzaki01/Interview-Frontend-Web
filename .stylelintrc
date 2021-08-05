@@ -1,0 +1,19 @@
+{
+  "extends":"stylelint-config-recommended-scss",
+  "plugins":[
+    "stylelint-scss",
+    "stylelint-no-unsupported-browser-features"
+  ],
+  "rules":{
+    "no-descending-specificity":[true,{"severity":"warning"}],
+    "block-no-empty":true,
+    "indentation":[2, {
+      "severity":"warning"
+    }],
+    "at-rule-blacklist": ["debug",{
+      "message":"Please remove @debug statement before production",
+      "severity":"warning"
+    }],
+    "scss/at-extend-no-missing-placeholder":[true,{"severity":"warning"}]
+  }
+}

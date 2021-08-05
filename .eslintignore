@@ -1,0 +1,13 @@
+.history/
+.idea/
+.vscode/
+build/*
+node_modules/*
+config/
+coverage/
+tests/
+__storybook/
+__testcafe/
+*.spec.js
+*.spec.jsx
+

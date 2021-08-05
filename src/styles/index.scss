@@ -1,0 +1,109 @@
+@import "../styles/colors";
+@import "grid-system";
+
+*, :after, :before {
+  box-sizing: border-box;
+}
+
+body, html {
+  overflow-x: hidden;
+}
+
+body, #app {
+  background: $color-grey-lighter;
+  font-family: Arial;
+}
+
+#modal-root {
+  position: relative;
+  z-index: 999;
+
+  .modal-content {
+    max-width: 90%;
+  }
+}
+
+a {
+  text-decoration: none;
+
+  &:hover, &:active, &:focus {
+    text-decoration: none;
+  }
+}
+
+// Flex
+
+.flex-column {
+  flex-direction: column!important;
+}
+.min-vh-100 {
+  min-height: 100vh!important;
+}
+.d-flex {
+  display: flex!important;
+}
+
+.flex-grow-1 {
+  flex-grow: 1!important;
+}
+
+// Margins
+.margin-top-20 {
+  margin-top: 20px;
+}
+
+.margin-10 {
+  margin: 10px;
+}
+
+// Paddings
+.padding-0 {
+  padding: 0;
+}
+
+// Fonts
+.weight-600 {
+  font-weight: 600;
+}
+
+.weight-normal {
+  font-weight: normal;
+}
+
+.font-size-13 {
+  font-size: 13px;
+}
+
+.margin-left-15 {
+  margin-left: 15px;
+}
+
+// Colors
+.color-grey {
+  color: $color-grey-darker;
+}
+
+.color-blue {
+  color: $color-blue;
+}
+
+.color-orange {
+  color: $color-orange;
+}
+
+// Utilities
+.border-bottom {
+  border-bottom: 1px solid $color-grey;
+}
+
+.round {
+  border-radius: 10px;
+}
+
+.round4px {
+  border-radius: 4px;
+}
+
+.background {
+  background-color: #f7f7f7;
+}
