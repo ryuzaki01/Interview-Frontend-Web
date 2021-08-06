@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { renderRoutes } from "react-router-config";
-import { BrowserRouter, useLocation } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 import { LocalDataContext } from './core/context';
-import { parseQuery } from './core/utils';
 import routes from "./routes";
 
 const App = () => {

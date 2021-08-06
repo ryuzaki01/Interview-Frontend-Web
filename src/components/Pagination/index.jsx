@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from '@tiket-com/react-ui';
 import { useHistory } from 'react-router-dom';
-import { string, number, object, func, bool } from 'prop-types';
+import { number, func, bool } from 'prop-types';
 
 import useData from '../../hooks/useData';
 

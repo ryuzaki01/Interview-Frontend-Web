@@ -1,5 +1,5 @@
 import React from 'react';
-import { oneOfType, node, string, element, bool } from 'prop-types';
+import { oneOfType, node, string, element } from 'prop-types';
 
 import "./style.scss";
 
